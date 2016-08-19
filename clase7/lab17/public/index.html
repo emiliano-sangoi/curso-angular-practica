@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="appConsultas">
+<head>
+<meta charset="ISO-8859-1">
+<title>Laboratorio 17</title>
+	<script type="text/javascript" src="lib/angular/angular.js"></script>
+</head>
+<body>
+<div ng-controller="***COMPLETAR***" class="container">
+	<div class="page-header">
+  		<h1>Sistema de Consultas <small>para realizar consultas a MongoDB via NodeJS</small></h1>
+	</div>
+	<div>
+		<span>Coleccion</span>
+		<input ng-model="consultaDB.coleccionMongoDB"></input>
+	</div>
+	<div>
+		<span>Consulta</span>
+		<textarea ng-model="consultaDB.condiciones"></textarea>
+	</div>
+	<div>
+		<span>
+			<button ng-click="***COMPLETAR***">Consultar</button>
+			<button ng-click="***COMPLETAR***">Insertar</button>
+			<button ng-click="***COMPLETAR***">Actualizar</button>
+			<button ng-click="***COMPLETAR***">Borrar</button>
+		</span>
+	</div>
+	<h3>Resultado</h3>
+	<div>
+		<span>***COMPLETAR para mostrar el resultado de la consulta almacenado en una variable del controlador.***</span>
+	</div>
+</div>
+	<script src="app.js" type="text/javascript"></script>
+	<script src="scripts/consultaController.js" type="text/javascript"></script>
+	<script src="scripts/consultaService.js" type="text/javascript"></script>
+</body>
+</html>
