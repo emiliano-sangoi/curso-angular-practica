@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--
+    localhost/curso-angular-practica/lab06/index.html
+-->
+<html ng-app="appLab06">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Laboratorio 6,7</title>
+        <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="lab6_estilo.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+    <body ng-controller="tareasController">
+        <div class="container" ng-class="{'padding2':agenda.propietario}">
+            <header class="">
+                <h1 ng-cloak>{{ titulo}}</h1>
+                <div ng-class="{'padding-top-1':agenda.propietario}">
+                    <div ng-show="agenda.propietario != undefined" class="alert alert-info" ng-cloak>
+                        <p><span class="negrita">Propietario:</span> {{nombrePropietario}}</p>
+                    </div>
+                    <p ng-hide="agenda.propietario != undefined" class="" ng-cloak>
+                        <input ng-model="nombrePropietario" class=""/>
+                        <button ng-click="crearPropietario()">Crear propietario</button>
+                    </p>
+                </div>
+            </header>
+
+
+
+            <div id="bloqueGestionTareas" ng-show="agenda.propietario != undefined">
+                <div id="seccionFormABMTarea" class="row" ng-class="{'padding2':agenda.propietario}">
+                    <form id="frmABMTarea" class="form-horizontal">
+                        <!--Titulo:-->
+                        <div class="form-group">
+                            <label for="titulo" class="control-label col-sm-2">Titulo: </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="titulo" ng-model="unaTarea.titulo" required="true" class="form-control"/>
+                            </div>
+                        </div>
+                        <!--Fecha:-->
+                        <div class="form-group">
+                            <label for="fecha" class="control-label col-sm-2">Fecha: </label>
+                            <div class="col-sm-4">
+                                <input type="date" id="fecha" ng-model="unaTarea.fecha" required="true" class="form-control"/>
+                            </div>
+                        </div>
+                        <!--Duracion:-->
+                        <div class="form-group">
+                            <label for="duracion" class="control-label col-sm-2">Duracion: </label>
+                            <div class="col-sm-4">
+                                <input type="number" id="duracion" min="15" max="120" ng-model="unaTarea.duracion" step="15" class="form-control"/>
+                            </div>
+                        </div>
+                        <!--Prioridad:-->
+                        <div class="form-group">
+                            <label for="prioridad" class="control-label col-sm-2">Prioridad: </label>
+                            <div class="col-sm-4">
+                                <!--Prioridad ALTA:-->
+                                <div class="radio">
+                                    <label for="prioridadAlta">
+                                        <input type="radio" name="prioridad" id="prioridadAlta" ng-model="unaTarea.prioridad" value="1" checked="checked">
+                                        Alta
+                                    </label>
+                                </div>                                
+                                <!--Prioridad BAJA:-->
+                                <div class="radio">
+                                    <label for="prioridadBaja" class="radio-inline">
+                                        <input type="radio" name="prioridad" id="prioridadBaja" ng-model="unaTarea.prioridad" value="0"/>
+                                        Baja
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Categoria:-->
+                        <div class="form-group">
+                            <label for="categoria" class="control-label col-sm-2">Categoria: </label>
+                            <div class="col-sm-4">
+                                <select id="categoria" class="form-control">
+                                    <option value="Tramite">Tramite</option>
+                                    <option value="Reunion">Reunion</option>
+                                    <option value="Recordatorio">Recordatorio</option>
+                                    <option value="Otros">Otros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Email:-->
+                        <div class="form-group">
+                            <label for="mail" class="control-label col-sm-2">Correo: </label>
+                            <div class="col-sm-4">
+                                <input type="mail" id="mail" ng-model="unaTarea.mail" required="true" class="form-control"/>
+                            </div>
+                        </div>
+                        <!--Descripcion:-->
+                        <div class="form-group">
+                            <label for="mail" class="control-label col-sm-2">Descripción: </label>
+                            <div class="col-sm-4">
+                                <textarea rows="6" cols="40" class="form-control" id="descripcion" ng-model="unaTarea.descripcion"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-4 text-right">
+                            <button id="btnAddTarea" type="button" class="btn btn-primary" ng-click="agregarTarea()" > Agregar </button>
+                            <button id="btnUpdTarea" type="button" class="btn btn-default"> Actualizar </button>
+                            <button id="btnDelTarea" type="button" class="btn btn-default"> Borrar </button>
+                        </div>
+                        <!--                        <div>
+                                                    <span>Descripcion</span>
+                                                    <textarea rows="6" cols="40" id="descripcion" ng-model="unaTarea.descripcion"></textarea>
+                                                </div>-->
+
+
+                        <!--<div>-->
+                        <!--<span>Titulo</span>-->
+                        <!--<input type="text" id="titulo" ng-model="unaTarea.titulo" required="true"/>-->
+                        <!--<span>Fecha</span>-->
+                        <!--<input type="date" id="fecha" ng-model="unaTarea.fecha" required="true"/>-->
+                        <!--<span>Duracion</span>-->
+                        <!--<input type="number" id="duracion" min="15" max="120" ng-model="unaTarea.duracion" step="15" />-->
+                        <!--<span>Prioridad</span>-->
+                        <!--<input type="radio" name="prioridad" id="prioridadAlta" ng-model="unaTarea.prioridad" value="1" checked="checked" />-->
+                        <!--<input type="radio" name="prioridad" id="prioridadBaja" ng-model="unaTarea.prioridad" value="0"/>-->
+                        <!--                            <span>Categoria</span>
+                                                    <select id="categoria">
+                                                        <option value="Tramite">Tramite</option>
+                                                        <option value="Reunion">Reunion</option>
+                                                        <option value="Recordatorio">Recordatorio</option>
+                                                        <option value="Otros">Otros</option>
+                                                    </select>-->
+                        <!--<span>Correo</span>-->
+                        <!--<input type="mail" id="mail" ng-model="unaTarea.mail" required="true"/>-->
+                        <!--</div>-->
+                        <!--                        <div>
+                                                    <span>Descripcion</span>
+                                                    <textarea rows="6" cols="40" id="descripcion" ng-model="unaTarea.descripcion"></textarea>
+                                                </div>-->
+                        <!--                        <div>
+                                                    <button id="btnAddTarea" type="button" class="btn btn-primary" ng-click="agregarTarea()" > Agregar </button>
+                                                    <button id="btnUpdTarea" type="button" class="btn btn-default"> Actualizar </button>
+                                                    <button id="btnDelTarea" type="button" class="btn btn-default"> Borrar </button>
+                                                </div>-->
+                    </form>
+                </div>                
+                <hr/>
+                <div class="row" ng-class="{'padding2':agenda.propietario}">
+                    <div class="">
+                        <h2>Listado de tareas</h2>
+                        <br/>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <th>Titulo</th>
+                                <th>Fecha</th>
+                                <th>Duracion</th>
+                                <th>Prioridad</th>
+                                <th>Categoria</th>
+                                <th>Mail</th>
+                                <th>Descripcion</th>
+                                <th>Operaciones</th>
+                                </thead>
+
+                                <tbody ng-repeat="tarea in agenda.tareas">
+                                    <tr>
+                                        <td>{{tarea.titulo | uppercase }}</td>
+                                        <td>{{tarea.fecha | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{tarea.duracion}}</td>
+                                        <td>{{tarea.prioridad}}</td>
+                                        <td>{{tarea.categoria}}</td>
+                                        <td>{{tarea.mail}}</td>
+                                        <td>{{tarea.descripcion}}</td>
+                                        <td>
+                                            <span>
+                                                <a href ng-click="seleccionar(tarea)" class="btn btn-xs btn-default ">Seleccionar</a>
+                                            </span>
+                                            <span>                                                
+                                                <a href ng-click="borrarTarea($index)" class="btn btn-xs btn-danger">Borrar</a>                                
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--<div>-->
+                <!--                    <div >
+                                        <ul id="listaTareas">
+                                            <li ng-repeat="tarea in agenda.tareas">
+                                                <span>
+                                                    <a href ng-click="seleccionar(tarea)"> {{tarea.titulo}}</a>
+                                                </span>
+                                                <span>
+                                                    {{tarea.fecha}}
+                                                </span>
+                                                <span>
+                                                    {{tarea.duracion}}
+                                                </span>
+                                                <span>
+                                                    {{tarea.prioridad}}
+                                                </span>
+                                                <span>
+                                                    {{tarea.categoria}}
+                                                </span>
+                                                <span>
+                                                    {{tarea.mail}}
+                                                </span>
+                                                <span>
+                                                    {{tarea.descripcion}}
+                                                </span>
+                                                <span>
+                                                    <a href ng-click="borrarTarea($index)">borrar</a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+
+
+        <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
+        <!--Bootstrap:-->
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <!-- Angular -->
+        <script src="../node_modules/angular/angular.min.js" type="text/javascript"></script>
+
+        <!--Archivo angular a crear en el paso siguiente-->
+        <script src="appLab06.js"></script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+body{
+    /*background-color: #74AFAD;*/
+    background-color: #C1E1A6;
+    
+}
+
+.container{
+    background-color: #F0F0F0;
+    /*background-color: #74AFAD;*/   
+    width: 80%;
+}
+
+.padding2{
+    padding: 2em;
+}
+
+.padding-top-1{
+    padding-top: 1em;
+}
+
+.negrita{
+    font-weight: bold;
+}
+.row{
+    margin-right: none;
+    margin-left: none;
+}
+
+/*.fondo3{background-color: #F0F0F0;}*/
