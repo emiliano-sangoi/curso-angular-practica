@@ -1,0 +1,23 @@
+{
+  "name": "curso-angular-practica",
+  "version": "1.0.0",
+  "description": "Practica del curso de AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emiliano-sangoi/curso-angular-practica.git"
+  },
+  "keywords": [
+    "AngularJS",
+    "Curso"
+  ],
+  "author": "Emiliano Sangoi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emiliano-sangoi/curso-angular-practica/issues"
+  },
+  "homepage": "https://github.com/emiliano-sangoi/curso-angular-practica#readme"
+}
