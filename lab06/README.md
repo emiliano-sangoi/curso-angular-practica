@@ -1,3 +1,3 @@
-Laboratorio 6 del Curso Angular
+Laboratorio 6 y 7 del Curso Angular
 
 El enunciado se encuentra en DATOS
