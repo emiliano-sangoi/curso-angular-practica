@@ -1,0 +1,94 @@
+<!--<div class="container fill" ng-controller="GestionTareasCtrl">-->
+<div class="container fill" >
+    <div class="row">
+        <div  class="col-xs-8">
+            <h2>Historia de usuario ({{operacion}})</h2>
+            <form name="formhistusuarios"  novalidate="novalidate"  class="form-horizontal margin-top-1">
+                <!--Proyecto al que pertenece:-->
+                <div class="form-group">
+                    <label for="proyectoHU" class="col-sm-2 control-label">Proyecto: </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" 
+                                ng-options="proyecto as proyecto.nombre for proyecto in proyectos track by proyecto._id " ng-model="hist.proyecto">                            
+                        </select>                        
+                    </div>
+                </div>
+
+                <!--nombre de la historia de usuario:-->
+                <div class="form-group">
+                    <label for="nombreHU" class="col-sm-2 control-label">Nombre: </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nombreHU" placeholder="Nombre de la historia del usuario" 
+                               ng-model="hist.nombre">
+                    </div>
+                </div>
+                <!--descripcion de la historia de usuario:-->
+                <div class="form-group">
+                    <label for="descHU" class="col-sm-2 control-label">Descripci&oacute;n</label>
+                    <div class="col-sm-10">
+                        <textarea id="descHU" rows="5" class="form-control" ng-model="hist.desc" placeholder='Introduzca una descripción'>
+                            
+                        </textarea>
+                    </div>
+                </div>
+                <!-- prioridad -->
+                <div class="form-group">
+                    <label for="prioridadHU" class="col-sm-2 control-label">Prioridad:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="prioridadHU" 
+                                ng-options="item for item in prioridades" ng-model="hist.prioridad" ></select>
+
+                    </div>
+                </div>
+
+                <!-- puntos -->
+                <div class="form-group">
+                    <label for="puntosHU" class="col-sm-2 control-label">Puntos:</label>
+                    <div class="col-sm-4">
+                        <input type="number" min="3" max="18" step="3" id="puntosHU" class="form-control" ng-model="hist.puntaje" >
+                    </div>
+                </div>
+                <!-- Estado -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Estado</label>
+                    <div class="col-sm-8">
+                        <span>
+                            <input type="radio" id="planif" ng-model="hist.estado" value="Planificada">
+                            <label for="planif" class="control-label"> Planificada</label>
+                        </span>
+                        <span class="padding-left-1">
+                            <input type="radio" id="enCurso" ng-model="hist.estado" value="En Curso">
+                            <label for="enCurso" class="control-label"> En curso</label>
+                        </span>
+                        <span class="padding-left-1">
+                            <input type="radio" id="finalizada" ng-model="hist.estado" value="Finalizada">
+                            <label for="finalizada" class="control-label"> Finalizada</label>
+                        </span>
+                    </div>
+                </div>
+                <!--Testeada:-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Testeada?</label>
+                    <div class="col-sm-10">
+                        <span>
+                            <input type="checkbox" id="testSi" ng-model="hist.testeada" ng-true-value="'Si'" ng-false-value="'No'">
+                        </span>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-default" ng-disabled="proyectos == null || proyectos.length == 0" ng-click="guardar()">Guardar</button>
+                        <a class="btn btn-info" ng-href="#/tareas/lista" role="button">Ver Todos</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="alert alert-success" ng-show="msg" role="alert">{{msg}}</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>	
+
+
