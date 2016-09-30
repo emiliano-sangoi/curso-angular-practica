@@ -1,0 +1,7 @@
+Curso: Desarrollo de Aplicaciones con HTML5,AngularJS y NodeJS
+
+Cursado: 1er semestre 2016
+
+Alumno: Emiliano Sangoi
+Email: emiliano.sangoi@gmail.com
+Fecha de entrega: 30/09/2016
